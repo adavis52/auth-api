@@ -66,9 +66,8 @@ app.get("/api/user/favourites", passport.authenticate('jwt', { session: false })
         .then(data => {
             res.json(data);
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
-
 });
 
 app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -76,7 +75,7 @@ app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: fals
         .then(data => {
             res.json(data)
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
 });
 
@@ -85,7 +84,7 @@ app.delete("/api/user/favourites/:id", passport.authenticate('jwt', { session: f
         .then(data => {
             res.json(data)
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
 });
 
@@ -94,7 +93,7 @@ app.get("/api/user/history", passport.authenticate('jwt', { session: false }), (
         .then(data => {
             res.json(data);
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
 
 });
@@ -104,7 +103,7 @@ app.put("/api/user/history/:id", passport.authenticate('jwt', { session: false }
         .then(data => {
             res.json(data)
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
 });
 
