@@ -23,7 +23,7 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     if (jwt_payload) {
         next(null, {
             _id: jwt_payload._id,
-            userName: userName,
+            userName: jwt_payload.userName,
         });
     } else {
         next(null, false);
@@ -50,12 +50,12 @@ app.post("/api/user/login", (req, res) => {
         .then((user) => {
             let payload = {
                 _id: user._id,
-                userName: userName
+                userName: user.userName
             };
 
             let token = jwt.sign(payload, jwtOptions.secretOrKey);
 
-            res.json({ message: 'login successful', token: token });
+            res.json({ "message": 'login successful', "token": token });
         }).catch(msg => {
             res.status(422).json({ "message": msg });
         });
@@ -112,7 +112,7 @@ app.delete("/api/user/history/:id", passport.authenticate('jwt', { session: fals
         .then(data => {
             res.json(data)
         }).catch(msg => {
-            res.status(422).json({ error: msg });
+            res.status(422).json({ "error": msg });
         })
 });
 
